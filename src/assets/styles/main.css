@@ -1,0 +1,34 @@
+:root {
+    --vcpl-primary: #003057;
+    --vcpl-secondary: #E1523D;
+    --vcpl-ternary: #64CCC9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+body, html {
+    font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
