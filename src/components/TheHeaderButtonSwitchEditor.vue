@@ -1,9 +1,9 @@
 <template>
   <div class="switchEditor-container">
-    <button class="switchEditor-button" @click="toggleSwitchEditor" :class="{isActive: UIStore.showBlocklyEditor}">
-      Blocks
+    <button class="switchEditor-button" v-on="UIStore.showMonacoEditor ? { click: () => toggleSwitchEditor('/blockly') } : {}" :class="{isActive: UIStore.showBlocklyEditor}">
+      Blockly
     </button>
-    <button class="switchEditor-button" :class="{isActive: UIStore.showMonacoEditor}">
+    <button class="switchEditor-button" v-on="UIStore.showBlocklyEditor ? { click: () => toggleSwitchEditor('/circuitpython')} : {}" :class="{isActive: UIStore.showMonacoEditor}">
       Circuit Python
     </button>
   </div>
@@ -11,14 +11,14 @@
 
 <script>
 import {useUIStore} from "@/stores/UIStore";
+import router from "@/router";
 
 export default {
   name: "TheHeaderButtonSwitchEditor",
   setup() {
     const UIStore = useUIStore();
-    const toggleSwitchEditor = () => {
-      UIStore.showBlocklyEditor = !UIStore.showBlocklyEditor;
-      UIStore.showMonacoEditor = !UIStore.showMonacoEditor;
+    const toggleSwitchEditor = route => {
+      router.push(route);
     };
     return {
       UIStore,

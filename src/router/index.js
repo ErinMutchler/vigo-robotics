@@ -1,18 +1,29 @@
 import { createRouter, createWebHistory } from "vue-router";
-import EditorView from "@/views/EditorView.vue";
+import BlocklyEditorView from "@/views/BlocklyEditorView.vue";
+import MonacoEditorView from "@/views/MonacoEditorView.vue";
+import LoginView from "@/views/LoginView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "editor",
-      component: EditorView,
+      path: "/blockly",
+      name: "blockly",
+      component: BlocklyEditorView,
+    },
+    {
+      path: "/circuitpython",
+      name: "circuitpython",
+      component: MonacoEditorView,
     },
     {
       path: "/login",
       name: "login",
-      component: () => import("@/views/LoginView.vue"),
+      component: LoginView,
+    },
+    {
+      path: "/",
+      redirect: "/blockly",
     },
   ],
 });
