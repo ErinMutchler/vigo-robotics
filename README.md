@@ -33,3 +33,12 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+### TODO:
+ - Add Login Modal
+ - Style Toolbar Modal
+ - Add filtering to toolbar modal
+ - Add exit options for toolbar modal (esc and x)
+ - Add autocomplete text for monaco
+ - Update generator functions for blockly
