@@ -9,12 +9,13 @@
 import {useUIStore} from "@/stores/UIStore";
 import {monacoService} from "@/services/MonacoService";
 
+
 export default {
   name: "MonacoEditorView",
   mounted() {
-    monacoService.inject(this.$refs.monacoDiv);
     this.UIStore.showMonacoEditor = true;
     this.UIStore.showBlocklyEditor = false;
+    monacoService.inject(this.$refs.monacoDiv);
   },
   setup() {
     const UIStore = useUIStore();
