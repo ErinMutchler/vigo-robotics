@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.blocklyToolboxDiv {
+    background: white;
+    box-shadow: 4px 0 2px -4px rgb(0 0 0 / 12%), 4px 0 2px -4px rgb(0 0 0 / 24%);
+    width: auto;
+}
+
+.blocklyTreeRow {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 -1px 0 0 #ecf0f1;
+    margin-bottom: 0 !important;
+    border-left-width: 12px !important;
+}
+
+.categoryIcon {
+    height: 24px;
+    vertical-align: middle;
+    width: 24px;
+    margin: 0 0.4rem;
+    background-size: contain;
+}
+
+.categoryLabel {
+    cursor: default;
+    font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 1.2rem;
+    font-weight: 200;
+    line-height: normal;
+    padding: 0 3px;
+    vertical-align: middle;
+    display: none;
+}
+
+.toolboxSeparator {
+    height: .1rem;
+    background: #e3e0e0;
+}
+
+.movementCategoryLabel {
+    color: #1E90FF;
+}
+
+.sensorCategoryLabel {
+    color: #D401D4;
+}
+
+.actuatorCategoryLabel {
+    color: #E63022;
+}
+
+.audioCategoryLabel {
+    color: #5C2D91;
+}
+
+.logicCategoryLabel {
+    color: #E3008C;
+}
+
+.loopsCategoryLabel {
+    color: #00AA00;
+}
+
+.mathCategoryLabel {
+    color: #00A4A6;
+}
+
+.textCategoryLabel {
+    color: #DC143C;
+}
+
+.listsCategoryLabel {
+    color: #9400D3;
+}
+
+
+.variablesCategoryLabel {
+    color: #3455DB;
+}
+
+.functionsCategoryLabel {
+    color: #E65722;
+}
+
+
+.movementCategoryIcon {
+    background-image: url('@/assets/icons/movement.svg');
+}
+
+.sensorCategoryIcon {
+    background-image: url('@/assets/icons/sensor.svg');
+}
+
+.actuatorCategoryIcon{
+    background-image: url('@/assets/icons/actuator.svg');
+}
+
+.audioCategoryIcon {
+    background-image: url('@/assets/icons/audio.svg');
+}
+
+.logicCategoryIcon {
+    background-image: url('@/assets/icons/logic.svg');
+}
+
+.loopsCategoryIcon {
+    background-image: url('@/assets/icons/loops.svg');
+}
+
+.mathCategoryIcon {
+    background-image: url('@/assets/icons/math.svg');
+}
+
+.textCategoryIcon {
+    background-image: url('@/assets/icons/text.svg');
+}
+
+.listsCategoryIcon {
+    background-image: url('@/assets/icons/lists.svg');
+}
+
+.variablesCategoryIcon {
+    background-image: url('@/assets/icons/variables.svg');
+}
+
+.functionsCategoryIcon {
+    background-image: url('@/assets/icons/functions.svg');
+}
+
+.blocklyTreeSelected > .blocklyTreeRowContentContainer > .categoryLabel {
+    color: white !important;
+}
+
+.blocklyTreeSelected > .blocklyTreeRowContentContainer > .categoryIcon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(3%) hue-rotate(329deg) brightness(103%) contrast(100%);
+}
+
+@media (min-width: 768px) {
+    .blocklyToolboxDiv {
+        width: 200px;
+    }
+    .categoryLabel {
+        display: inline-block;
+    }
+}

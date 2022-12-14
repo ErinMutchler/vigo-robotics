@@ -11,6 +11,14 @@ class BlocklyService {
     this.injectionDiv = injectionDiv;
     this.injectionArea = injectionArea;
     this.workspace = Blockly.inject(this.injectionArea, options);
+
+    document.querySelectorAll('[class$="CategoryLabel"]').forEach((element) => {
+      element.classList.add("categoryLabel");
+    });
+
+    document.querySelectorAll('[class$="CategoryIcon"]').forEach((element) => {
+      element.classList.add("categoryIcon");
+    });
   }
 
   startChangeListener(eventHandler) {
