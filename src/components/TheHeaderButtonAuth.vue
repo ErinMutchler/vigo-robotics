@@ -1,10 +1,10 @@
 <template>
   <button class="auth-button" @click="handleAuthEvent">
     <span class="auth-button-text">
-      {{ authStore.uid ? "Logout" : "Login" }}
+      {{ authStore.uid.length > 0 ? "Logout" : "Login" }}
     </span>
-    <LogoutIcon v-if="authStore.isLoggedIn" class="auth-button-icon" />
-    <LoginIcon v-if="!authStore.isLoggedIn" class="auth-button-icon" />
+    <LogoutIcon v-if="authStore.uid.length > 0" class="auth-button-icon" />
+    <LoginIcon v-if="!authStore.uid.length > 0" class="auth-button-icon" />
   </button>
 </template>
 
@@ -12,8 +12,7 @@
 import { useAuthStore } from "@/stores/AuthStore";
 import LoginIcon from "@/components/icons/LoginIcon.vue";
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
-// import router from "@/router";
-import {authService} from "@/services/FirebaseConfig";
+import { authService } from "@/services/FirebaseConfig";
 
 export default {
   name: "TheHeaderButtonAuth",
@@ -25,7 +24,6 @@ export default {
         authService.logout();
       } else {
         authService.loginWithGoogle();
-        //router.push("/login");
       }
     }
     return {
