@@ -1,16 +1,16 @@
 <template>
   <input
-      v-model="projectStore.currentProject.name"
-      :disabled="projectStore.currentProject.firestoreID"
-      class="projectName-input"
-      name="projectName"
-      type="text"
-      placeholder="Untitled"
+    v-model="projectStore.currentProject.name"
+    :disabled="projectStore.currentProject.firestoreID.length > 0"
+    class="projectName-input"
+    name="projectName"
+    type="text"
+    placeholder="Untitled"
   />
 </template>
 
 <script>
-import {useProjectStore} from "@/stores/ProjectStore";
+import { useProjectStore } from "@/stores/ProjectStore";
 
 export default {
   name: "ToolbarInput",
@@ -19,9 +19,9 @@ export default {
 
     return {
       projectStore,
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style scoped>

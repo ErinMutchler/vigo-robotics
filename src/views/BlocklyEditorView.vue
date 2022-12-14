@@ -4,22 +4,29 @@
       <td ref="blocklyArea" id="blocklyArea"></td>
     </tr>
   </table>
-
   <div ref="blocklyDiv" id="blocklyDiv"></div>
 </template>
 
 <script>
-import {useUIStore} from "@/stores/UIStore";
-import {useProjectStore} from "@/stores/ProjectStore";
-import {BlocklyWorkspace} from "../services/BlocklyWorkspace";
+import { useUIStore } from "@/stores/UIStore";
+import { useProjectStore } from "@/stores/ProjectStore";
+import { blocklyService } from "@/services/BlocklyService";
 
 export default {
   name: "BlocklyEditorView",
   mounted() {
+    this.projectStore.resetCurrentProject();
+    blocklyService.inject(this.$refs.blocklyDiv, this.$refs.blocklyArea);
+    blocklyService.startResizeListener();
+    blocklyService.startChangeListener(() => {
+      this.projectStore.currentProject.code = blocklyService.getPythonCode();
+      this.projectStore.currentProject.unsavedChangesExist = true;
+      this.projectStore.currentProject.workspace =
+        blocklyService.getWorkspaceAsString();
+    });
+    this.projectStore.currentProject.type = "blockly";
     this.UIStore.showMonacoEditor = false;
     this.UIStore.showBlocklyEditor = true;
-    this.projectStore.currentProject.type = "blockly";
-    blocklyService.inject(this.$refs.blocklyDiv, this.$refs.blocklyArea);
   },
   setup() {
     const UIStore = useUIStore();
@@ -29,7 +36,7 @@ export default {
       projectStore,
     };
   },
-}
+};
 </script>
 
 <style scoped>

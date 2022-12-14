@@ -1,12 +1,39 @@
 <template>
   <div class="theToolbar-container">
     <div class="theToolbar">
-      <ToolbarInput />
-      <ToolbarButton @click="saveProject" :src="saveIcon" tooltip-text="Save Project" />
-      <ToolbarButton @click="createProject" :src="createIcon" tooltip-text="Create Project" />
-      <ToolbarButton @click="loadProject" :src="loadIcon" tooltip-text="Load Project" />
-      <ToolbarButton @click="deleteProject" :src="deleteIcon" tooltip-text="Delete Project" />
-      <ToolbarButton @click="downloadProject" :src="downloadIcon" tooltip-text="Download Project" />
+      <ToolbarModal />
+      <ToolbarInput
+          v-if="authStore.uid.length > 1"
+      />
+      <ToolbarButton
+        @click="saveProject"
+        :src="saveIcon"
+        tooltip-text="Save Project"
+        v-if="authStore.uid.length > 1"
+      />
+      <ToolbarButton
+        @click="createProject"
+        :src="createIcon"
+        tooltip-text="Create Project"
+        v-if="authStore.uid.length > 1"
+      />
+      <ToolbarButton
+        @click="loadProject"
+        :src="loadIcon"
+        tooltip-text="Load Project"
+        v-if="authStore.uid.length > 1"
+      />
+      <ToolbarButton
+        @click="deleteProject"
+        :src="deleteIcon"
+        tooltip-text="Delete Project"
+        v-if="authStore.uid.length > 1"
+      />
+      <ToolbarButton
+        @click="downloadProject"
+        :src="downloadIcon"
+        tooltip-text="Download Project"
+      />
     </div>
   </div>
 </template>
@@ -19,19 +46,27 @@ import createIcon from "@/assets/icons/create.svg";
 import loadIcon from "@/assets/icons/load.svg";
 import deleteIcon from "@/assets/icons/delete.svg";
 import downloadIcon from "@/assets/icons/download.svg";
-import {projectService} from "@/services/ProjectService.js";
+import { projectService } from "@/services/ProjectService.js";
+import {useUIStore} from "@/stores/UIStore";
+import {useAuthStore} from "@/stores/AuthStore";
+import ToolbarModal from "@/components/ToolbarModal.vue";
 export default {
   name: "TheToolbar",
-  components: {ToolbarInput, ToolbarButton},
+  components: {ToolbarModal, ToolbarInput, ToolbarButton },
   setup() {
+    const UIStore = useUIStore();
+    const authStore = useAuthStore();
+
+    projectService.injectStores();
+
     const saveProject = () => {
       projectService.saveProject();
     };
     const createProject = () => {
       projectService.createProject();
-    }
+    };
     const loadProject = () => {
-      projectService.loadProject();
+      UIStore.showToolbarModal = !UIStore.showToolbarModal;
     };
     const deleteProject = () => {
       projectService.deleteProject();
@@ -49,10 +84,12 @@ export default {
       createProject,
       loadProject,
       deleteProject,
-      downloadProject
-    }
-  }
-}
+      downloadProject,
+      UIStore,
+      authStore,
+    };
+  },
+};
 </script>
 
 <style scoped>

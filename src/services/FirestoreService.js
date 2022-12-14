@@ -1,68 +1,66 @@
 import {
-  onSnapshot,
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
-  deleteDoc,
+  getDocs,
+  onSnapshot,
+  query,
   Timestamp,
   updateDoc,
-  getDocs,
-  query,
   where,
 } from "firebase/firestore";
-import { useProjectStore } from "@/stores/ProjectStore";
+
 export default class FirestoreService {
   constructor(firestore) {
     this.firestore = firestore;
     this.unsubscribe = {};
   }
 
-  startChangeListener() {
-    this.projecStore = useProjectStore();
+  startChangeListener(eventHandler) {
     this.unsubscribe = onSnapshot(
       collection(this.firestore, "Projects"),
       (docs) => {
-        this.projecStore.projects = [];
-        docs.forEach((doc) => {
-          let project = doc.data();
-          project.firestoreID = doc.id;
-          this.projecStore.projects.push(project);
-        });
+        eventHandler(docs);
       }
     );
   }
 
-  async createProject(name, type, author, workspace) {
+  stopChangeListener() {
+    this.unsubscribe.unsubscribe();
+  }
+
+  async createProject(name, type, author, workspace, code) {
     return await addDoc(collection(this.firestore, "Projects"), {
       name: name,
       type: type,
       author: author,
       workspace: workspace,
+      code: code,
       lastTouched: Timestamp.now(),
     });
   }
 
-  async updateProject(workspace, firestoreID) {
+  async updateProject(workspace, code, firestoreID) {
     return updateDoc(doc(this.firestore, "Projects", firestoreID), {
       workspace: workspace,
+      code: code,
       lastTouched: Timestamp.now(),
     });
   }
 
-  async readProject(firestoreID) {
+  async loadProject(firestoreID) {
     return getDoc(doc(this.firestore, "Projects", firestoreID));
   }
 
-  async deleteProject(firestoreID) {
-    return deleteDoc(doc(this.firestore, "Projects", firestoreID));
-  }
-
-  async readAllProjects(uid) {
+  loadAllProjects(uid) {
     return getDocs(
       query(collection(this.firestore, "Projects"), where("author", "==", uid))
     );
   }
 
-  async getAllWorkspaces() {}
+  async deleteProject(firestoreID) {
+    return deleteDoc(doc(this.firestore, "Projects", firestoreID));
+  }
 }

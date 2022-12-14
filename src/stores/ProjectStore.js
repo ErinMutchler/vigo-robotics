@@ -6,11 +6,28 @@ export const useProjectStore = defineStore("projectStore", {
     currentProject: {
       name: "",
       type: null,
-      firestoreID: null, // updated in ProjectService
-      author: null, // updated in AuthService
-      workspace: "", // updated in blockly
-      code: "", // updated in BlocklyService and MonacoService
-      unsavedChangesExist: false, // updated in ProjectService
+      firestoreID: "",
+      author: "",
+      workspace: "",
+      code: "",
+      unsavedChangesExist: false,
     },
   }),
+  getters: {
+    getProjects(state) {
+      return state.projects.filter((project) => {
+        return project.author === state.currentProject.author && project.type === state.currentProject.type;
+      })
+    },
+  },
+  actions: {
+    resetCurrentProject() {
+      this.currentProject.name = "";
+      this.currentProject.firestoreID = "";
+      this.currentProject.workspace = "";
+      this.currentProject.code = "";
+      this.currentProject.unsavedChangesExist = false;
+    }
+  }
+
 });

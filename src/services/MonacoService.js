@@ -1,5 +1,5 @@
 import * as monaco from "monaco-editor";
-import { useProjectStore } from "@/stores/ProjectStore";
+import {options} from "@/services/monaco/MonacoOptions";
 
 class MonacoService {
   constructor() {
@@ -7,22 +7,23 @@ class MonacoService {
   }
 
   inject(injectionDiv) {
-    this.editor = monaco.editor.create(injectionDiv, {
-      value: "",
-      lineNumbers: "on",
-      roundedSelection: false,
-      scrollBeyondLastLine: false,
-      readOnly: false,
-      theme: "vs",
-      language: "python",
-      automaticLayout: true,
-    });
-    this.projectStore = useProjectStore();
-    this.projectStore.currentProject.type = "monaco";
-    this.editor.getModel().onDidChangeContent(() => {
-      this.projectStore.currentProject.unsavedChangesExist = true;
-      this.projectStore.currentProject.code = this.editor.getValue();
-    });
+    this.editor = monaco.editor.create(injectionDiv, options);
+  }
+
+  startChangeListener(eventHandler) {
+    this.editor.getModel().onDidChangeContent(eventHandler);
+  }
+
+  clearEditor() {
+    this.editor.setValue(options.value);
+  }
+
+  loadCode(code) {
+    this.editor.setValue(code + "");
+  }
+
+  getCode() {
+    return this.editor.getValue();
   }
 }
 

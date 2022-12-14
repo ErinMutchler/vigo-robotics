@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useAuthStore } from "@/stores/AuthStore";
+import {useProjectStore} from "@/stores/ProjectStore";
 
 export default class AuthService {
   constructor(auth) {
@@ -15,11 +16,14 @@ export default class AuthService {
 
   startChangeListener() {
     this.authStore = useAuthStore();
+    this.projectStore = useProjectStore();
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         this.authStore.uid = user.uid;
+        this.projectStore.currentProject.author = user.uid;
       } else {
-        this.authStore.uid = null;
+        this.authStore.uid = "";
+        this.projectStore.currentProject.author = "";
       }
     });
   }
