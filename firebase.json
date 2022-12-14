@@ -5,6 +5,7 @@
   },
   "hosting": {
     "public": "dist",
+    "site": "vigo-robotics",
     "ignore": [
       "firebase.json",
       "**/.*",

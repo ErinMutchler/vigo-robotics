@@ -97,7 +97,7 @@ class ProjectService {
   }
 
   async downloadProject() {
-    const boilerplate = this.projectStore.currentProject.type === "blockly" ? "import robot\nimport time\nrobot = robot.Robot()\n" : "";
+    const boilerplate = this.projectStore.currentProject.type === "blockly" ? "import time\nimport robot\nmyRobot = robot.Robot()\n" : "";
     const [fileHandle] = await window.showOpenFilePicker();
     const writable = await fileHandle.createWritable();
     await writable.write(boilerplate + this.projectStore.currentProject.code);

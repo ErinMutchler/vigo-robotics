@@ -11,8 +11,8 @@ const firebaseConfig = {
     projectId: "vcpl-robotics-2327d",
     storageBucket: "vcpl-robotics-2327d.appspot.com",
     messagingSenderId: "139375668684",
-    appId: "1:139375668684:web:ef0261116f9a6079e18169",
-    measurementId: "G-0EVQKXZYE1"
+    appId: "1:139375668684:web:9e3493e2226fc646e18169",
+    measurementId: "G-T1LKRGP8V4"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
