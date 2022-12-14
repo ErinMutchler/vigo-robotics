@@ -31,7 +31,7 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   const projectStore = useProjectStore();
-  if (from.name === "blockly" || from.name === "monaco") {
+  if (from.name === "blockly" || from.name === "circuitpython") {
     if (projectStore.currentProject.unsavedChangesExist) {
       if (
         !confirm("Unsaved changes exist.\nAre you sure you want to continue?")

@@ -6,7 +6,6 @@ import { monacoService } from "@/services/MonacoService";
 
 class ProjectService {
   constructor() {
-
   }
 
   injectStores() {
@@ -17,6 +16,10 @@ class ProjectService {
   saveProject() {
     this.projectStore.currentProject.unsavedChangesExist = false;
     if (this.projectStore.currentProject.firestoreID === "") {
+      if (this.projectStore.currentProject.name.trim().length === 0) {
+        alert("Please enter a valid project name");
+        return;
+      }
       firestoreService
         .createProject(
           this.projectStore.currentProject.name,
@@ -93,8 +96,12 @@ class ProjectService {
 
   }
 
-  downloadProject() {
-    console.log("downloading");
+  async downloadProject() {
+    const boilerplate = this.projectStore.currentProject.type === "blockly" ? "import robot\nimport time\nrobot = robot.Robot()\n" : "";
+    const [fileHandle] = await window.showOpenFilePicker();
+    const writable = await fileHandle.createWritable();
+    await writable.write(boilerplate + this.projectStore.currentProject.code);
+    await writable.close();
   }
 }
 
