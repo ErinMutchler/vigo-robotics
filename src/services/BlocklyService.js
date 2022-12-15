@@ -1,5 +1,5 @@
 import Blockly from "blockly";
-import { options } from "@/services/blockly/BlocklyOptions";
+import options from "@/services/blockly/options";
 import { pythonGenerator } from "blockly/python";
 
 class BlocklyService {

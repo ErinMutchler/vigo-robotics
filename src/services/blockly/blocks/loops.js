@@ -106,18 +106,18 @@ Blockly.defineBlocksWithJsonArray([
     inputsInline: true,
     previousStatement: null,
     nextStatement: null,
-    colour: 230,
-    tooltip: "",
+    colour: "#00AA00",
+    tooltip: "Sleep for given seconds",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["loops_sleep"] = function (block) {
-  let value_sleep = pythonGenerator.valueToCode(
+  let seconds = pythonGenerator.valueToCode(
     block,
     "DURATION",
     pythonGenerator.ORDER_ATOMIC
   );
-  let code = "await aysncio.sleep(" + value_sleep + ")";
+  let code = `time.sleep(${seconds}`;
   return code;
 };
