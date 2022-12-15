@@ -14,13 +14,13 @@ Blockly.defineBlocksWithJsonArray([
     previousStatement: null,
     nextStatement: null,
     colour: "#1E90FF",
-    tooltip: "",
+    tooltip: "Turn both motors off",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["movement_stop"] = function (block) {
-  return `movement.stop()\n`;
+  return `myRobot.stop()\n`;
 };
 
 export default Stop;

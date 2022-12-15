@@ -25,14 +25,14 @@ Blockly.defineBlocksWithJsonArray([
     ],
     output: "Number",
     colour: "#D401D4",
-    tooltip: "Returns the value read from the listed line-tracking sensor",
+    tooltip: "Get the value of the given line tracking sensor from 0 to 65536",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["sensor_read_linetracking"] = function (block) {
   let linetracking = block.getFieldValue("SENSOR").toString();
-  return [`sensor.read_linetracking("${linetracking}")`, pythonGenerator.ORDER_NONE];
+  return [`myRobot.get_line_tracking_value("${linetracking}")`, pythonGenerator.ORDER_NONE];
 };
 
 export default ReadLinetracking;

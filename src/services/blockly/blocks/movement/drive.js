@@ -8,11 +8,11 @@ const Drive = {
     DIRECTION: "FORWARD",
   },
   inputs: {
-    SPEED: {
+    POWER: {
       shadow: {
         type: "math_number",
         fields: {
-          NUM: 10,
+          NUM: 50,
         },
       },
     },
@@ -22,7 +22,7 @@ const Drive = {
 Blockly.defineBlocksWithJsonArray([
   {
     type: "movement_drive",
-    message0: "Drive %1 at %2 %3 cm/s",
+    message0: "Drive %1 at %2 %3 % power",
     args0: [
       {
         type: "field_dropdown",
@@ -37,7 +37,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "input_value",
-        name: "SPEED",
+        name: "POWER",
         check: "Number",
       },
     ],
@@ -45,19 +45,20 @@ Blockly.defineBlocksWithJsonArray([
     previousStatement: null,
     nextStatement: null,
     colour: "#1E90FF",
-    tooltip: "",
+    tooltip: "Move the robot in the given direction at the given power",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["movement_drive"] = function (block) {
   let direction = block.getFieldValue("DIRECTION").toString();
-  let speed = pythonGenerator.valueToCode(
+  let power = pythonGenerator.valueToCode(
     block,
-    "SPEED",
+    "POWER",
     pythonGenerator.ORDER_ATOMIC
   ).toString();
-  return `robot.drive("${direction}", ${speed})\n`;
+  return `myRobot.drive("${direction}", ${power})\n`;
 };
+
 
 export default Drive;

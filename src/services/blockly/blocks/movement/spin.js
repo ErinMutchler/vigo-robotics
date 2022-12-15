@@ -8,11 +8,11 @@ const Spin = {
     DIRECTION: "LEFT",
   },
   inputs: {
-    SPEED: {
+    POWER: {
       shadow: {
         type: "math_number",
         fields: {
-          NUM: 30,
+          NUM: 50,
         },
       },
     },
@@ -22,7 +22,7 @@ const Spin = {
 Blockly.defineBlocksWithJsonArray([
   {
     type: "movement_spin",
-    message0: "Spin %1 at %2 %3 °/s",
+    message0: "Spin %1 at %2 % power",
     args0: [
       {
         type: "field_dropdown",
@@ -33,11 +33,8 @@ Blockly.defineBlocksWithJsonArray([
         ],
       },
       {
-        type: "input_dummy",
-      },
-      {
         type: "input_value",
-        name: "SPEED",
+        name: "POWER",
         check: "Number",
       },
     ],
@@ -45,19 +42,19 @@ Blockly.defineBlocksWithJsonArray([
     previousStatement: null,
     nextStatement: null,
     colour: "#1E90FF",
-    tooltip: "",
+    tooltip: "Spin the robot in the given direction at the given power",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["movement_spin"] = function (block) {
   let direction = block.getFieldValue("DIRECTION").toString();
-  let speed = pythonGenerator.valueToCode(
+  let power = pythonGenerator.valueToCode(
     block,
-    "SPEED",
+    "POWER",
     pythonGenerator.ORDER_ATOMIC
   ).toString();
-  return `movement.spin("${direction}", ${speed})\n`;
+  return `myRobot.spin("${direction}", ${power})\n`;
 };
 
 export default Spin;

@@ -25,14 +25,14 @@ Blockly.defineBlocksWithJsonArray([
     ],
     output: "Boolean",
     colour: "#D401D4",
-    tooltip: "Returns the state read from the listed button",
+    tooltip: "Get the value of the given button",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["sensor_read_button"] = function (block) {
   let button = block.getFieldValue("SENSOR").toString();
-  return [`sensor.read_button("${button}")`, pythonGenerator.ORDER_NONE];
+  return [`myRobot.get_button_value("${button}")`, pythonGenerator.ORDER_NONE];
 };
 
 export default ReadButton;

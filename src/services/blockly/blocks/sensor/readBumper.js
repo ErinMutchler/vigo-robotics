@@ -25,14 +25,14 @@ Blockly.defineBlocksWithJsonArray([
     ],
     output: "Boolean",
     colour: "#D401D4",
-    tooltip: "Returns the state read from the listed bumper sensor",
+    tooltip: "Get the value of the given bumper",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["sensor_read_bumper"] = function (block) {
   let bumper = block.getFieldValue("SENSOR").toString();
-  return [`sensor.read_bumper("${bumper}")`, pythonGenerator.ORDER_NONE];
+  return [`myRobot.get_bumper_value("${bumper}")`, pythonGenerator.ORDER_NONE];
 };
 
 export default ReadBumper;

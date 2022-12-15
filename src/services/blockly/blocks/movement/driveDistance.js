@@ -12,15 +12,15 @@ const DriveDistance = {
       shadow: {
         type: "math_number",
         fields: {
-          NUM: 0,
+          NUM: 10,
         },
       },
     },
-    SPEED: {
+    POWER: {
       shadow: {
         type: "math_number",
         fields: {
-          NUM: 10,
+          NUM: 50,
         },
       },
     },
@@ -30,7 +30,7 @@ const DriveDistance = {
 Blockly.defineBlocksWithJsonArray([
   {
     type: "movement_drive_distance",
-    message0: "Drive %1 %2 %3 cm %4 at %5 cm/s",
+    message0: "Drive %1 at %2 %% power for %3 centimeters",
     args0: [
       {
         type: "field_dropdown",
@@ -41,19 +41,13 @@ Blockly.defineBlocksWithJsonArray([
         ],
       },
       {
-        type: "input_dummy",
+        type: "input_value",
+        name: "POWER",
+        check: "Number",
       },
       {
         type: "input_value",
         name: "DISTANCE",
-        check: "Number",
-      },
-      {
-        type: "input_dummy",
-      },
-      {
-        type: "input_value",
-        name: "SPEED",
         check: "Number",
       },
     ],
@@ -61,24 +55,21 @@ Blockly.defineBlocksWithJsonArray([
     previousStatement: null,
     nextStatement: null,
     colour: "#1E90FF",
-    tooltip: "",
+    tooltip:
+      "Move the robot in the given direction at the given power for the given distance",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["movement_drive_distance"] = function (block) {
   let direction = block.getFieldValue("DIRECTION").toString();
-  let distance = pythonGenerator.valueToCode(
-    block,
-    "DISTANCE",
-    pythonGenerator.ORDER_ATOMIC
-  ).toString();
-  let speed = pythonGenerator.valueToCode(
-    block,
-    "SPEED",
-    pythonGenerator.ORDER_ATOMIC
-  ).toString();
-  return `movement.drive_distance("${direction}", ${distance}, ${speed})\n`;
+  let distance = pythonGenerator
+    .valueToCode(block, "DISTANCE", pythonGenerator.ORDER_ATOMIC)
+    .toString();
+  let power = pythonGenerator
+    .valueToCode(block, "POWER", pythonGenerator.ORDER_ATOMIC)
+    .toString();
+  return `myRobot.drive_distance("${direction}", ${power}, ${distance})\n`;
 };
 
 export default DriveDistance;

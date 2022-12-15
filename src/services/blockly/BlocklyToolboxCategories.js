@@ -21,6 +21,7 @@ import * as loops from "@/services/blockly/blocks/loops";
 import * as math from "@/services/blockly/blocks/math";
 import * as text from "@/services/blockly/blocks/text";
 import * as lists from "@/services/blockly/blocks/lists";
+import resetDistanceCounter from "@/services/blockly/blocks/sensor/resetDistanceCounter";
 
 export const Separator = {
     kind: "sep",
@@ -64,6 +65,7 @@ export const Sensor = {
         readAccelerometer,
         readGyroscope,
         readMotorSpeed,
+        resetDistanceCounter
     ],
 };
 

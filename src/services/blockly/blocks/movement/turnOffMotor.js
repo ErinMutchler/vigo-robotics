@@ -4,7 +4,6 @@ import { pythonGenerator } from "blockly/python";
 const turnOffMotor = {
   kind: "block",
   type: "movement_turn_off_motor",
-
 };
 
 Blockly.defineBlocksWithJsonArray([
@@ -25,14 +24,14 @@ Blockly.defineBlocksWithJsonArray([
     previousStatement: null,
     nextStatement: null,
     colour: "#1E90FF",
-    tooltip: "",
+    tooltip: "Turn the given motor off",
     helpUrl: "",
   },
 ]);
 
 pythonGenerator["movement_turn_off_motor"] = function (block) {
   let motor = block.getFieldValue("MOTOR").toString();
-  return `robot.turn_off_motor("${motor}")\n`;
+  return `myRobot.turn_off_motor("${motor}")\n`;
 };
 
 export default turnOffMotor;
