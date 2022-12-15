@@ -13,7 +13,6 @@ import { useAuthStore } from "@/stores/AuthStore";
 import LoginIcon from "@/components/icons/LoginIcon.vue";
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 import { authService } from "@/services/FirebaseConfig";
-import router from "@/router";
 
 export default {
   name: "TheHeaderButtonAuth",
@@ -25,7 +24,6 @@ export default {
         authService.logout();
       } else {
         authService.loginWithGoogle();
-        router.push("")
       }
     }
     return {
