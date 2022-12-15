@@ -3,7 +3,7 @@
  <div class="wrapper">
   <aside class="floatLeft">
     
-    <div class="bounce"><img src="https://i.ibb.co/SJFdSg2/html-css-roboi.png" altstyle='height: 100%; width: 100%; object-fit: contain'/></div>
+    <div class="bounce"><img src="https://i.ibb.co/SJFdSg2/html-css-roboi.png" style='height: 100%; width: 100%; object-fit: contain'/></div>
     
   </aside>
     <aside class="floatRight">
@@ -83,7 +83,6 @@ input[type=text], input[type=password] {
   border: 2px solid lightgray;
   border-radius: 25px;
 }
-
 
 button {
   background-color: #003057;
