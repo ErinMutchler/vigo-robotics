@@ -21,7 +21,7 @@ Blockly.defineBlocksWithJsonArray([
     },
 ]);
 
-pythonGenerator[""] = function (block) {
+pythonGenerator["movement_stop"] = function (block) {
     return `myRobot.stop()\n`;
 };
 

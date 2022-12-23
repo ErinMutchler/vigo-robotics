@@ -34,7 +34,7 @@ Blockly.defineBlocksWithJsonArray([
     },
 ]);
 
-pythonGenerator[""] = function (block) {
+pythonGenerator["movement_spinDegrees"] = function (block) {
     let direction = block.getFieldValue("DIRECTION").toString()
     let power = pythonGenerator.valueToCode(
         block,
