@@ -1,5 +1,5 @@
 export const options = {
-  value: "import time\nimport robot\n\nmyRobot = new robot.Robot()\n",
+  value: "import time\nimport robot\n\nmyRobot = robot.Robot()\n",
   lineNumbers: "on",
   roundedSelection: false,
   scrollBeyondLastLine: false,

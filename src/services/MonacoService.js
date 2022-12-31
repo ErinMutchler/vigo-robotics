@@ -1,6 +1,5 @@
 import * as monaco from "monaco-editor";
 import {options} from "@/services/monaco/MonacoOptions";
-
 class MonacoService {
   constructor() {
     this.editor = null;

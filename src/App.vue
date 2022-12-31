@@ -2,7 +2,7 @@
   <TheHeader />
   <RouterView />
   <TheToolbar />
-  <TheConsole />
+<!--  <TheConsole />-->
 </template>
 
 <script setup>
@@ -11,7 +11,7 @@ import TheHeader from "@/components/TheHeader.vue";
 import TheToolbar from "@/components/TheToolbar.vue";
 import { onMounted } from "vue";
 import { authService } from "@/services/FirebaseConfig";
-import TheConsole from "@/components/TheConsole.vue";
+// import TheConsole from "@/components/TheConsole.vue";
 
 onMounted(() => {
   authService.startChangeListener();
