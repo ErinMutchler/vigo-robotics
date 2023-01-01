@@ -1,8 +1,8 @@
 import Blockly from "blockly";
 import { pythonGenerator } from "blockly/python";
 import { actuatorColor } from "./utils/colors";
-import {positionValue, servoDropdown} from "./utils/arguments";
-import {positionBlock} from "./utils/shadowBlocks";
+import { positionValue, servoDropdown } from "./utils/arguments";
+import { positionBlock } from "./utils/shadowBlocks";
 
 const actuator_setServo = {
   kind: "block",
@@ -12,17 +12,14 @@ const actuator_setServo = {
   },
   inputs: {
     POSITION: positionBlock,
-  }
+  },
 };
 
 Blockly.defineBlocksWithJsonArray([
   {
     type: "actuator_setServo",
     message0: "Set servo %1 to %2",
-    args0: [
-        servoDropdown,
-        positionValue,
-    ],
+    args0: [servoDropdown, positionValue],
     inputsInline: true,
     previousStatement: null,
     nextStatement: null,
@@ -32,11 +29,11 @@ Blockly.defineBlocksWithJsonArray([
   },
 ]);
 
-pythonGenerator["actuators_set_servo"] = function (block) {
+pythonGenerator["actuator_setServo"] = function (block) {
   let servo = block.getFieldValue("SERVO").toString();
   let position = pythonGenerator
-      .valueToCode(block, "POSITION", pythonGenerator.ORDER_ATOMIC)
-      .toString();
+    .valueToCode(block, "POSITION", pythonGenerator.ORDER_ATOMIC)
+    .toString();
   return `myRobot.set_servo(${servo}, ${position})\n`;
 };
 
