@@ -70,7 +70,7 @@ class ProjectService {
     firestoreService.loadProject(firestoreID).then((doc) => {
       const project = doc.data();
       if (this.projectStore.currentProject.type === "blockly") {
-        blocklyService.loadWorkspace(JSON.parse(project.workspace));
+        blocklyService.loadWorkspace(project.workspace == "" ? {} : JSON.parse(project.workspace));
       } else if (this.projectStore.currentProject.type === "monaco") {
         monacoService.loadCode(project.code);
       }
