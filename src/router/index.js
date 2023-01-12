@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import BlocklyEditorView from "@/views/BlocklyEditorView.vue";
 import MonacoEditorView from "@/views/MonacoEditorView.vue";
 import LoginView from "@/views/LoginView.vue";
+import DocsView from "@/views/DocsView.vue";
 import { useProjectStore } from "@/stores/ProjectStore";
 
 const router = createRouter({
@@ -21,6 +22,11 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: LoginView,
+    },
+    {
+      path: "/docs",
+      name: "docs",
+      component: DocsView,
     },
     {
       path: "/",
