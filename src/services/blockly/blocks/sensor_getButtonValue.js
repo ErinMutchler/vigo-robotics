@@ -27,7 +27,7 @@ Blockly.defineBlocksWithJsonArray([
 
 pythonGenerator["sensor_getButtonValue"] = function (block) {
     let button = block.getFieldValue("BUTTON").toString();
-    return [`myRobot.get_button_value(${button})`, pythonGenerator.ORDER_NONE];
+    return [`myRobot.get_button_value("${button}")`, pythonGenerator.ORDER_NONE];
 };
 
 export default sensor_getButtonValue;

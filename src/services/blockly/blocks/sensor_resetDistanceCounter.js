@@ -1,7 +1,7 @@
 import Blockly from "blockly";
 import { pythonGenerator } from "blockly/python";
-import {sensorColor} from "./utils/colors";
-import {motorDropdown} from "./utils/arguments";
+import { sensorColor } from "./utils/colors";
+import { motorDropdown } from "./utils/arguments";
 
 const sensor_resetDistanceCounter = {
     kind: "block",
@@ -29,7 +29,7 @@ Blockly.defineBlocksWithJsonArray([
 
 pythonGenerator["sensor_resetDistanceCounter"] = function (block) {
     let motor = block.getFieldValue("MOTOR").toString();
-    return `myRobot.reset_distance_counter(${motor})\n`;
+    return `myRobot.reset_distance_counter("${motor}")\n`;
 };
 
 export default sensor_resetDistanceCounter;
