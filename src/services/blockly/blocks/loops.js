@@ -118,6 +118,6 @@ pythonGenerator["loops_sleep"] = function (block) {
     "DURATION",
     pythonGenerator.ORDER_ATOMIC
   );
-  let code = `time.sleep(${seconds}`;
+  let code = `time.sleep(${seconds})\n`;
   return code;
 };
