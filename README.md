@@ -1,3 +1,7 @@
+This project is hosted at https://www.vigo-robotics.web.app
+
+Email emutchler@vigolibrary.org for questions about this project.
+
 # vigo-robotics
 
 This template should help get you started developing with Vue 3 in Vite.
